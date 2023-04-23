@@ -1,5 +1,5 @@
 # MechSenseUI
-#Last Updated: 02/12/2023  
+#Last Updated: 04/23/2023  
 #Description: This Github link contains the User Interface for MechSense (CHI'23) as well as an example fishing game.  
 
 
@@ -24,7 +24,7 @@
 
 ---How to Use---
 
-1) Upload MechSense_Capsense code to Arduino (ensuring that the FDC2214 libraray is also installed)
+1) Upload MechSense_Capsense code to Arduino (ensuring that the FDC2214 library is also installed)
 2) Run the processing file 'MechSense_UI.pde" (Note that the processing file  will not run unless it is connected to a microcontroller, otherwise you will get a grey screen) 
 3) Press on the calibration button (you may change calibration specifics in the code)
 4) As it's calibrating, you can toggle to see the waveforms through "draw_waveforms"
@@ -34,7 +34,18 @@
 
 ---Notes---
 
-1) Rotating at higher speeds is more likely to produce error as it changes the shape of the polynomial graph (see paper for more details) 
+1) Rotating at higher speeds is more likely to produce error as it changes the shape of the polynomial graph (see paper* for more details) 
 2) Recommended if using laptop to have it connected to ground, as that establishes a more stable ground
-3) Any Wires in the system must not be moving and hand proximity should be reasonable to avoid noise (see paper)
+3) Any Wires in the system must not be moving and hand proximity should be reasonable to avoid noise (see paper*)
 4) The vertical distance between stator and rotor must be kept constant, otherwise errors might accumulate
+
+--- Any Questions/ Notes --- 
+
+If you have any questions or feedback, please contact malalawi@mit.edu 
+
+--- Paper* --- 
+
+Marwa AlAlawi, Noah Pacik-Nelson, Junyi Zhu, Ben Greenspan, Andrew Doan, Brandon Wong, Benjamin Owen-Block, Shanti Mickens, Wilhelm Schoeman, Michael Wessely, Andreea Danielescu, Stefanie Mueller.
+MechSense: A Design and Fabrication Pipeline for Integrating Rotary Encoders into 3D Printed Mechanisms
+https://dl.acm.org/doi/10.1145/3544548.3581361
+
