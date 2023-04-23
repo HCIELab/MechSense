@@ -282,7 +282,6 @@ void draw()
     try {
       raw = sensorPort.readStringUntil('\n'); 
       
-     // println(raw);
       vals = split(raw, ',');
     } catch (Exception e) {
       System.err.println(e);
@@ -292,16 +291,10 @@ void draw()
     if (calibrating && raw != null) {
       //the raw data from the library doesn't need the '.00' hence why we convert to double
       
-      //println(vals[0], vals[1], vals[2]);
       chan1_calib[calib_count] = (long)Double.parseDouble(vals[0].trim()); //Original was 0, 
       chan2_calib[calib_count] = (long)Double.parseDouble(vals[1].trim());//Original was 1, Long.valueOf(vals[3].trim())
       chan3_calib[calib_count] = (long)Double.parseDouble(vals[2].trim()); //Original was 2
-      //println(chan1_calib[calib_count]);
-      //if (calib_count > 0) {
-      //  chan1_calib[calib_count] = (long)(chan1_calib[calib_count]*(double)filt_val) + (long)(chan1_calib[calib_count-1]*(double)(1-filt_val));
-      //  chan2_calib[calib_count] = (long)(chan2_calib[calib_count]*(double)filt_val) + (long)(chan2_calib[calib_count-1]*(double)(1-filt_val));
-      //  chan3_calib[calib_count] = (long)(chan3_calib[calib_count]*(double)filt_val) + (long)(chan3_calib[calib_count-1]*(double)(1-filt_val));
-      //}
+
       
       chan1_min = long_min(chan1_min, chan1_calib[calib_count]);
       chan1_max = long_max(chan1_max, chan1_calib[calib_count]);
@@ -667,41 +660,6 @@ void draw()
       
       strokeWeight(1);
     }
-    //// Draw line at local minima
-    //stroke(0);
-    //line(260, map(chan1_feat[4], 0, 1, 60+(height-90)/3, 70), width, map(chan1_feat[4], 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(chan2_feat[0], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(chan2_feat[0], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(chan3_feat[2], 0, 1, height-10, 90+(height-90)*2/3), width, map(chan3_feat[2], 0, 1, height-10, 90+(height-90)*2/3));
-    
-    //// Draw line at local maximas
-    //line(260, map(is_peak*chan1_feat[3], 0, 1, 60+(height-90)/3, 70), width, map(is_peak*chan1_feat[3], 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(is_peak*chan1_feat[5], 0, 1, 60+(height-90)/3, 70), width, map(is_peak*chan1_feat[5], 0, 1, 60+(height-90)/3, 70));
-
-    //line(260, map(is_peak*chan2_feat[5], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(is_peak*chan2_feat[5], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(is_peak*chan2_feat[1], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(is_peak*chan2_feat[1], 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-
-    //line(260, map(is_peak*chan3_feat[1], 0, 1, height-10, 90+(height-90)*2/3), width, map(is_peak*chan3_feat[1], 0, 1, height-10, 90+(height-90)*2/3));
-    //line(260, map(is_peak*chan3_feat[3], 0, 1, height-10, 90+(height-90)*2/3), width, map(is_peak*chan3_feat[3], 0, 1, height-10, 90+(height-90)*2/3));
-    
-    //// Draw lines at bounds
-    //stroke(0);
-    //line(260, map(1, 0, 1, 60+(height-90)/3, 70), width, map(1, 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(1, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(1, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(1, 0, 1, height-10, 90+(height-90)*2/3), width, map(1, 0, 1, height-10, 90+(height-90)*2/3));
-    
-    //stroke(0);
-    //line(260, map(0, 0, 1, 60+(height-90)/3, 70), width, map(0, 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(0, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(0, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(0, 0, 1, height-10, 90+(height-90)*2/3), width, map(0, 0, 1, height-10, 90+(height-90)*2/3));
-    
-    //stroke(0);
-    //line(260, map(0.5, 0, 1, 60+(height-90)/3, 70), width, map(0.5, 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(0.5, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(0.5, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(0.5, 0, 1, height-10, 90+(height-90)*2/3), width, map(0.5, 0, 1, height-10, 90+(height-90)*2/3));
-    
-    //line(260, map(min_thresh, 0, 1, 60+(height-90)/3, 70), width, map(min_thresh, 0, 1, 60+(height-90)/3, 70));
-    //line(260, map(min_thresh, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3), width, map(min_thresh, 0, 1, 70+(height-90)*2/3, 80+(height-90)/3));
-    //line(260, map(min_thresh, 0, 1, height-10, 90+(height-90)*2/3), width, map(min_thresh, 0, 1, height-10, 90+(height-90)*2/3));
   } else if (run_system && fishingGame) {
   
     refreshBg();
@@ -724,12 +682,7 @@ void mouseClicked() {
     total_rot = 0;
     calib_count = 0;
     calib_start = millis();
-  // Redo Calibration Button
-  //} else if (mouseX > 30 && mouseX < 230 && mouseY > 170 && mouseY < 220) {
-  //  calibrating = true;
-  //  total_rot = 0;
-  //  calib_count = 0;
-  //  calib_start = millis();
+
   // Waveforms Button
   } else if (mouseX > 30 && mouseX < 230 && mouseY > 250 && mouseY < 300) {
     draw_waveforms = !draw_waveforms;
@@ -751,17 +704,14 @@ void calibrationFinished() {
       map(chan1_calib[i], chan1_min, chan1_max, 0, 1), 
       map(chan2_calib[i], chan2_min, chan2_max, 0, 1),
       map(chan3_calib[i], chan3_min, chan3_max, 0, 1));
-      //println("calibration state all", calib_states[i], "channel one calibration",
-      //chan1_calib[i]);
+
   }
  
 
 
   // Fill unknown states with closest known state
   for (int i = 0; i < calib_count; i++) { 
-         // println(calib_states[i]);
-         // println(i);
-          //println("calib_count:", calib_count, "calib_state length:", calib_states.length);
+
     if (calib_states[i] != 1 | calib_states[i] != 2 | calib_states[i] != 4) {
       int j = 0;
       
